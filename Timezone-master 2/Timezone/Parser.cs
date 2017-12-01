@@ -8,6 +8,7 @@ namespace Timezone
 {
     class Parser : IParser
     {
+        //implement method defined in interface
         public void DisplayTime(string time, string timezone){
             
         }
