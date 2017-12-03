@@ -24,15 +24,18 @@ namespace Timezone
 
 
                 //pull current date and time
-                DateTime timeNow = DateTime.Now;
+                String timeNow = DateTime.Now.ToString();
 
 
                 //use text file to find time zone for location
-                TimeZoneInfo place = TimeZoneInfo.FindSystemTimeZoneById(sLineParts[1]);
+                //TimeZoneInfo place = TimeZoneInfo.FindSystemTimeZoneById(sLineParts[1]);
 
                 //calculate time difference
-                DateTime convertedTime = TimeZoneInfo.ConvertTime(timeNow, TimeZoneInfo.Utc,
-                                                                   place);
+                //DateTime convertedTime = TimeZoneInfo.ConvertTime(timeNow, TimeZoneInfo.Utc,place);
+
+                //split ukDateTime to just display tim                 string[] sUkTime = timeNow.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                Console.WriteLine("In the UK the time is ",sUkTime[1]," and the time in ",sLineParts[1]," is ",sLineParts[0]);
 
                 lReturn.Add(timeZone);
             }
