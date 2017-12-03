@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Timezone
 {
+
     class Reader : IReader, IDisposable
     {
         public List<Tuple<string, string>> Read()
@@ -21,13 +22,31 @@ namespace Timezone
 
                 Tuple<string, string> timeZone = new Tuple<string, string>(sLineParts.First(), sLineParts.Last());
 
+
+                //pull current date and time
+                DateTime timeNow = DateTime.Now;
+
+
+                //use text file to find time zone for location
+                TimeZoneInfo place = TimeZoneInfo.FindSystemTimeZoneById(sLineParts[1]);
+
+                //calculate time difference
+                DateTime convertedTime = TimeZoneInfo.ConvertTime(timeNow, TimeZoneInfo.Utc,
+                                                                   place);
+
                 lReturn.Add(timeZone);
             }
 
+
+
             return lReturn;
+
+
         }
         public void Dispose()
         {
         }
+
+
     }
 }
